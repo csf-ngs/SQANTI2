@@ -1,6 +1,7 @@
 # VBCF.NGS changes
 
 - biopython `Seq` objects don't seem to have a `.tostring()` method any more? replace with `str()`
+- replace gtfToGenePred binary with original from ucsc (not linked to libpng12)
 
 # SQANTI2
 
