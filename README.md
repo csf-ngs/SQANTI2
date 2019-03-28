@@ -1,3 +1,7 @@
+# VBCF.NGS changes
+
+- biopython `Seq` objects don't seem to have a `.tostring()` method any more? replace with `str()`
+
 # SQANTI2
 
 Last Updated: 03/18/2019

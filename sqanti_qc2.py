@@ -461,7 +461,7 @@ def correctionPlusORFpred(args, genome_dict):
                     orf_length -= pos
                     cds_start += pos*3
                     newid = "{0}|{1}_aa|{2}|{3}|{4}".format(id_pre, orf_length, orf_strand, cds_start, cds_end)
-                    newseq = r.seq.tostring()[pos:]
+                    newseq = str(r.seq)[pos:]
                     orfDict[r.id] = myQueryProteins(cds_start, cds_end, orf_length, proteinID=newid)
                     f.write(">{0}\n{1}\n".format(newid, newseq))
                 else:
