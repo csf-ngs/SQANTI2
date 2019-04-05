@@ -68,7 +68,9 @@ data.class = read.table(class.file, header=T, as.is=T, sep="\t")
 rownames(data.class) <- data.class$isoform
 
 # hekker: if no single novel gene column is NA, makes problems later
-data.class[is.na(data.class$associated_gene), ]$associated_gene<-""
+if (any(is.na(data.class$associated_gene))) {
+  data.class[is.na(data.class$associated_gene), ]$associated_gene<-""
+}
 
 # ToDO: deal with expression data later
 if (!all(is.na(data.class$iso_exp))){
