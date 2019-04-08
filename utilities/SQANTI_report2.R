@@ -1039,8 +1039,7 @@ gt4 <- textGrob(sn, gp=gpar(fontface="italic", fontsize=17), vjust = 0)
 # Plot Table 1 and Table 2
 if (exists('gt3')) {
   grid.arrange(gt4,gt2,gt3,gt1, layout_matrix = cbind(c(1,2,3),c(1,4,4)))
-}
-else {
+} else {
   grid.arrange(gt4,gt2,gt1, layout_matrix = cbind(c(1,2,3),c(1,4,4)))
 }
 
