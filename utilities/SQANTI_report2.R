@@ -1016,15 +1016,17 @@ gt2 <- gTree(children=gList(table2, title2))
 
 # TABLE 3: Junction Classification
 
-uniq_sj_count <- nrow(uniqJunc)
+if (exists('uniqJunc')) {
+  uniq_sj_count <- nrow(uniqJunc)
 
-freqCat <- as.data.frame(table(uniqJunc$SJ_type))
-freqCat$Var1 <- gsub(" ", "", freqCat$Var1);
-freqCat$Var1 <- gsub("\n", " ", freqCat$Var1);
-freqCat$Frac <- round(freqCat$Freq*100 / uniq_sj_count, 2)
-table2 <- tableGrob(freqCat, rows = NULL, cols = c("Category","# SJs","Percent"))
-title2 <- textGrob("Splice Junction Classification", gp=gpar(fontface="italic", fontsize=17), vjust = -5)
-gt3 <- gTree(children=gList(table2, title2))
+  freqCat <- as.data.frame(table(uniqJunc$SJ_type))
+  freqCat$Var1 <- gsub(" ", "", freqCat$Var1);
+  freqCat$Var1 <- gsub("\n", " ", freqCat$Var1);
+  freqCat$Frac <- round(freqCat$Freq*100 / uniq_sj_count, 2)
+  table2 <- tableGrob(freqCat, rows = NULL, cols = c("Category","# SJs","Percent"))
+  title2 <- textGrob("Splice Junction Classification", gp=gpar(fontface="italic", fontsize=17), vjust = -5)
+  gt3 <- gTree(children=gList(table2, title2))
+}
 
 
 # TABLE 4: Summary number of Unique Isoforms and Unique Genes
@@ -1035,7 +1037,12 @@ gt4 <- textGrob(sn, gp=gpar(fontface="italic", fontsize=17), vjust = 0)
 
 
 # Plot Table 1 and Table 2
-grid.arrange(gt4,gt2,gt3,gt1, layout_matrix = cbind(c(1,2,3),c(1,4,4)))
+if (exists('gt3')) {
+  grid.arrange(gt4,gt2,gt3,gt1, layout_matrix = cbind(c(1,2,3),c(1,4,4)))
+}
+else {
+  grid.arrange(gt4,gt2,gt1, layout_matrix = cbind(c(1,2,3),c(1,4,4)))
+}
 
 s <- textGrob("Gene Characterization", gp=gpar(fontface="italic", fontsize=17), vjust = 0)
 grid.arrange(s)
