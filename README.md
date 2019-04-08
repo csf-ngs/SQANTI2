@@ -1,6 +1,7 @@
 # VBCF.NGS changes
 
-- fix `NA` in columns if no gene names could be extracted
+- do not process data.junctions if no splice junctions found (ie. only ERCC, no SIRV)
+- fix `NA` in columns if no gene names could be extracted (SIRV)
 - biopython `Seq` objects don't seem to have a `.tostring()` method any more? replace with `str()`
 - replace gtfToGenePred binary with original from ucsc (not linked to libpng12)
 

@@ -106,16 +106,18 @@ if (!all(is.na(data.class$iso_exp))){
 }
 
 # make a unique identifier using chrom_strand_start_end
-data.junction$junctionLabel = with(data.junction, paste(chrom, strand, genomic_start_coord, genomic_end_coord, sep="_"))
+if (nrow(data.junction)>0) {
+  data.junction$junctionLabel = with(data.junction, paste(chrom, strand, genomic_start_coord, genomic_end_coord, sep="_"))
 
-data.junction$SJ_type <- with(data.junction, paste(junction_category,canonical,"SJ", sep="_"))
-data.junction$SJ_type <- factor(data.junction$SJ_type, levels=c("known_canonical_SJ", "known_non_canonical_SJ", "novel_canonical_SJ", "novel_non_canonical_SJ"),
-                                       labels=c("Known\ncanonical ", "Known\nNon-canonical ", "Novel\ncanonical ", "Novel\nNon-canonical "), order=T)
+  data.junction$SJ_type <- with(data.junction, paste(junction_category,canonical,"SJ", sep="_"))
+  data.junction$SJ_type <- factor(data.junction$SJ_type, levels=c("known_canonical_SJ", "known_non_canonical_SJ", "novel_canonical_SJ", "novel_non_canonical_SJ"),
+                                         labels=c("Known\ncanonical ", "Known\nNon-canonical ", "Novel\ncanonical ", "Novel\nNon-canonical "), order=T)
 
-data.junction$structural_category = data.class[data.junction$isoform, "structural_category"]
+  data.junction$structural_category = data.class[data.junction$isoform, "structural_category"]
 
-uniqJunc <- unique(data.junction[,c("junctionLabel", "SJ_type", "total_coverage")]);
-uniqJuncRTS <- unique(data.junction[,c("junctionLabel","SJ_type", "RTS_junction")]);
+  uniqJunc <- unique(data.junction[,c("junctionLabel", "SJ_type", "total_coverage")]);
+  uniqJuncRTS <- unique(data.junction[,c("junctionLabel","SJ_type", "RTS_junction")]);
+}
 
 
 ########## Generating plots
