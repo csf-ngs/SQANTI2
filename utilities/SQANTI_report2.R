@@ -1153,8 +1153,12 @@ print(p32)
 
 s <- textGrob("Quality Controls", gp=gpar(fontface="italic", fontsize=17), vjust = 0)
 grid.arrange(s)
-print(p28.RTS)
-print(p28.SJ)
+if (exists('p28.RTS')) {
+  print(p28.RTS)
+}
+if (exists('p28.SJ')) {
+  print(p28.SJ)
+}
 
 dev.off()
 
