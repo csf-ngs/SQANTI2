@@ -1102,8 +1102,12 @@ if (nrow(data.FSM) > 0 ) {
 
 s <- textGrob("Splice Junction Characterization", gp=gpar(fontface="italic", fontsize=17), vjust = 0)
 grid.arrange(s)
-print(p23.a)
-print(p23.b)
+if (exists('p23.a')) {
+  print(p23.a)
+}
+if (exists('p23.b')) {
+  print(p23.b)
+}
 #   print(p24)
 #   print(p25)
 #   print(p26)
